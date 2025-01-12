@@ -18,7 +18,7 @@ script_url="https://raw.githubusercontent.com/MrChromebox/scripts/master/"
 export LC_ALL=C
 
 #set working dir
-if grep -q "Chrom" /etc/lsb-release ; then
+if cat /etc/lsb-release | grep "Chrom" > /dev/null 2>&1; then
 	# needed for ChromeOS/ChromiumOS v82+
 	mkdir -p /usr/local/bin
 	cd /usr/local/bin
@@ -57,7 +57,9 @@ source ./functions.sh
 cd /tmp
 
 #do setup stuff
-prelim_setup || exit 1
+prelim_setup
+[[ $? -ne 0 ]] && exit 1
+hasLegacyOption=false
 
 #show menu
-menu_fwupdate
+uefi_menu
