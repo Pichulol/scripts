@@ -1,2 +1,4 @@
 Older version of scripts
-Dont use
+
+
+Wouldnt recomend using. This is only setup to get the bios feature on an older chromebox
